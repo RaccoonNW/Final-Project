@@ -1,10 +1,26 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+// import Signup from "./Signup"
 
-function NavBar() {
+function NavBar({ user, setUser }) {
+
+    const navigate = useNavigate()
+
+    function handleLogout() {
+        fetch('/logout', {method: 'DELETE' }).then((r) => {
+            if (r.ok) {
+                setUser(null)
+            }
+        })
+        navigate('/')
+    }
+    
     return (
         <div className="navBar">
-            <Link to="/signup" className="signupButton">Signup</Link>
+            <div className="userInfo">
+                <p>User: {user.username}</p>
+            </div>
+            <button className="logoutButton" onClick={handleLogout}>Logout</button>
         </div>
     )
 }

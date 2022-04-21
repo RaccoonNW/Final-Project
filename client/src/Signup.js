@@ -1,23 +1,14 @@
-import { useState } from "react"
+import React, { useState } from 'react'
 import './App.css'
 
-function Signup() {
-    // const [username, setUsername] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [confirmPassword, setConfirmPassword] = useState('')
-    const [user, setUser] = useState(null)
-    const [errors, setErrors] = useState(null)
-  
+function Signup({ onLogin }) {
+    const [errors, setErrors] = useState([])
     const [data, setData] = useState({
         username: "",
         password: "",
-        confirmPassword: ""
+        password_confirmation: ""
     })
-    // let data = {
-    //   "username": username,
-    //   "password": password,
-    //   "password_confirmation": confirmPassword
-    // }
+
     function handleChange(e) {
         setData({
             ...data,
@@ -27,34 +18,22 @@ function Signup() {
   
     function handleSubmit(e) {
       e.preventDefault()
+      setErrors([])
       fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({data})
-        
       })
       .then((r) => {
         if (r.ok) {
-          r.json().then((user) => setUser(user))
+          r.json().then((user) => onLogin(user))
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
       });
     }
-
-    // function handleUserName(e) {
-    //     setUsername(e.target.value)
-    //   }
-    
-    //   function handlePassword(e) {
-    //     setPassword(e.target.value)
-    //   }
-    
-    //   function handleConfirmPassword(e) {
-    //     setConfirmPassword(e.target.value)
-    //   }
     
     return(
       <div className="signupForm">
@@ -62,6 +41,7 @@ function Signup() {
             <input
                 type="text"
                 name="username"
+                autoComplete='off'
                 value={data.username}
                 onChange={handleChange}
                 placeholder="Username..."
@@ -69,40 +49,27 @@ function Signup() {
             <input
                 type="password"
                 name="password"
+                autoComplete='off'
                 value={data.password}
                 onChange={handleChange}
                 placeholder="Password..."
             />
             <input
                 type="password"
-                name="confirmPassword"
-                value={data.confirmPassword}
+                name="password_confirmation"
+                autoComplete='off'
+                value={data.password_confirmation}
                 onChange={handleChange}
                 placeholder="Confirm Password..."
             />
             <button type="submit">Signup</button>
+            <div className='errors'>
+              {errors.map((err) => (
+                <p key={err}>{err}</p>
+              ))}
+            </div>
         </form>
       </div>
-        // <div>
-        //     <form>
-        //     <label className="label">Username</label>
-        //     <input onChange={handleUserName} className="input"
-        //     value={username} type="text" />
-
-        //     <label className="label">Password</label>
-        //     <input onChange={handlePassword} className="input"
-        //     value={password} type="password" />
-
-        //     <label className="label">Confirm Password</label>
-        //     <input onChange={handleConfirmPassword} className="input"
-        //     value={confirmPassword} type="password" />
-
-        //     <button onClick={handleSubmit} className="btn" type="submit">
-        //     Submit
-        //     </button>
-        //     </form>
-            
-        // </div>
     )
 }
 
