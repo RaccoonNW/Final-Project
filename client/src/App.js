@@ -2,7 +2,9 @@
 // import Signup from './Signup';
 import NavBar from "./NavBar";
 import Login from "./Login";
-import Owners from "./Owners";
+// import Owners from "./Owners";
+import Home from "./Home";
+import CustomerData from "./CustomerData";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -10,6 +12,7 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [ownerList, setOwnerList] = useState([])
+  const [houseList, setHouseList] = useState([])
 
   useEffect(() => {
     // auto-login
@@ -37,6 +40,14 @@ function App() {
       } else {
         r.json().then((data) => console.log(data))
       }
+    });
+
+    fetch('/houses').then((r) => {
+      if (r.ok) {
+        r.json().then((data) => setHouseList(data))
+      } else {
+        r.json().then((data) => console.log(data))
+      }
     })
   }, [user])
 
@@ -47,8 +58,8 @@ function App() {
       <div>
       <NavBar user={user} setUser={setUser} ownerList={ownerList}/>
       <Routes>
-        <Route path="/owners" element={<Owners ownerList={ownerList}/>}/>
-
+        <Route path="/owners" element={<CustomerData ownerList={ownerList} houseList={houseList}/>}/>
+        <Route path="/" element={<Home/>}/>
       </Routes>
       </div>
     )

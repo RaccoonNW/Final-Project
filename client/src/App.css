@@ -26,3 +26,15 @@
   background-color: #ddd;
   color: black;
 }
+
+.userInfo p {
+  display: block;
+  width:fit-content ;
+  height: 75px;
+  border-radius: 50%;
+  line-height: 75px;
+  font-size: 25px;
+  text-align: center;
+  background: rgb(255, 245, 245);
+  color: rgb(0, 0, 0);
+}
