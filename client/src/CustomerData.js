@@ -9,10 +9,10 @@ function CustomerData({ ownerList, houseList }) {
     function toggleHomeVis(e) {
         if (homeVis) {
             setHomeVis(false)
-            console.log('Button worked false')
+            console.log(ownerList)
         } else {
             setHomeVis(true)
-            console.log('Button worked true')
+            console.log(e.target.id)
         }
     }
 

@@ -7,10 +7,10 @@
   background: #ffffff;
 }
 
-.navBar {
+/* .navBar {
     background-color: rgb(215, 64, 64);
     overflow: hidden;
-}
+} */
 
 .signupButton {
   color: yellow;
@@ -37,4 +37,87 @@
   text-align: center;
   background: rgb(255, 245, 245);
   color: rgb(0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  margin: .5rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar-links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+}
+
+.nav-links {
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
+.nav-links:hover {
+  background-color: rgb(90, 81, 81);
+
+}
+
+.logout-button {
+  text-decoration: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  color: white;
+  background-color: #333;
+  border-color: #333;
+  padding: 1rem;
+  display: block;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: rgb(90, 81, 81);
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
 }
