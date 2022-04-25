@@ -1,32 +1,3 @@
-.signupForm {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #ffffff;
-}
-
-/* .navBar {
-    background-color: rgb(215, 64, 64);
-    overflow: hidden;
-} */
-
-.signupButton {
-  color: yellow;
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.signupButton:hover {
-  background-color: #ddd;
-  color: black;
-}
-
 .userInfo p {
   display: block;
   width:fit-content ;
@@ -41,9 +12,10 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
 }
@@ -120,4 +92,131 @@ table th {
   text-align: center;
   background-color: #04AA6D;
   color: white;
+}
+
+/* Login / Signup Form */
+
+.login-signup-main-div {
+  background-image: url('./Images/background.jpeg');
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup-main-div p {
+  font-size: smaller;
+  text-align: center;
+}
+
+.toggle-login-signup-button {
+  background-color: hsla(200, 14%, 4%, 0.396);;
+  border:  1px solid rgb(30, 83, 112);
+  outline: none;
+  padding: 10px 30px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1em;
+  color: white;
+  font-weight: lighter;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.toggle-login-signup-div {
+  background-color: none;
+  border: 0;
+  padding: 0;
+
+}
+
+.login-signup-container {
+  background-color: hsla(201, 100%, 6%, 0.6);
+  padding: 50px 30px;
+  width: 50%;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.login-signup-title {
+  color: whitesmoke;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  font-weight: normal;
+}
+
+.login-signup-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.login-signup-input label {
+  color: white;
+  font-weight: lighter;
+  font-size: 1em;
+  margin-bottom: 7px;
+}
+
+.login-signup-input input {
+  background-color: hsla(201, 100%, 91%, 0.3);;
+  border: 1px solid hsla(201, 100%, 6%);;
+  outline: none;
+  font-size: 1.5em;
+  padding: .1em .25em;
+  border-radius: 5px;
+  color: white;
+  font-weight: lighter;
+}
+
+.login-signup-input input:focus {
+  border: 1px solid hsla(201, 100%, 50%);;
+
+}
+
+.login-signup-button {
+  background-color: hsla(201, 100%, 50%, 0.1);;
+  border:  1px solid hsla(201, 100%, 50%);
+  outline: none;
+  padding: 10px 30px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1em;
+  color: white;
+  font-weight: lighter;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.login-signup-button:hover {
+  background-color: hsla(201, 100%, 50%, 0.3);
+}
+
+.login-signup-button:focus {
+  background-color: hsla(201, 100%, 50%, 0.5);
+}
+
+/* Homepage */
+
+.home-page-main-div {
+  background-image: url('./Images/home_page_background.jpeg');
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+}
+
+.home-page-main-div h2 {
+  font-size: 50px;
+  color: hsla(203, 80%, 2%, 0.586);
+  font-family: 'Courier New', Courier, monospace;
 }

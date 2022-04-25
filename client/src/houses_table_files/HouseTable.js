@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 import { useTable } from 'react-table'
-import { COLUMNS } from "./columns";
+import { HOUSE_COLUMNS } from "./house_columns";
 
-function BasicTable({ ownerList }) {
+function HouseTable({ houseList }) {
 
-    const columns = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => ownerList, [ownerList])
+    const columns = useMemo(() => HOUSE_COLUMNS, [])
+    const data = useMemo(() => houseList, [houseList])
 
     const tableInstance = useTable({
         columns,
@@ -47,4 +47,4 @@ function BasicTable({ ownerList }) {
     )
 }
 
-export default BasicTable
+export default HouseTable

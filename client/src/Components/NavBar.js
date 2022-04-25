@@ -21,6 +21,7 @@ function NavBar({ user, setUser, ownerList }) {
             <div className="navbar-links">
                 <NavLink className="nav-links" to='/'>Home</NavLink>
                 <NavLink className="nav-links" to='/owners'>Owners</NavLink>
+                <NavLink className="nav-links" to='houses'>Houses</NavLink>
                 <button className="logout-button" onClick={handleLogout}>Logout</button>
             </div>
         </nav>

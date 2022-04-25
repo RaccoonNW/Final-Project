@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :owners, only: [:index, :show]
   resources :houses, only: [:index, :show]
+  resources :house_owners, only: [:index, :show]
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
