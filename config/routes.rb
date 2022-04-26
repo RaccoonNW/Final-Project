@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :owners, only: [:index, :show]
+  resources :owners, only: [:index, :show, :update]
   resources :houses, only: [:index, :show]
   resources :house_owners, only: [:index, :show]
   

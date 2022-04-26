@@ -60,7 +60,7 @@ function App() {
       <div>
       <NavBar user={user} setUser={setUser} ownerList={ownerList}/>
       <Routes>
-        <Route path="/owners" element={<CustomerOwnerData ownerList={ownerList} houseList={houseList} houseOwnerList={houseOwnerList}/>}/>
+        <Route path="/owners" element={<CustomerOwnerData ownerList={ownerList} setOwnerList={setOwnerList}/>}/>
         <Route path="/houses" element={<CustomerHomeData houseList={houseList}/>}/>
         <Route path="/" element={<Home user={user}/>}/>
       </Routes>

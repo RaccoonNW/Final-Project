@@ -3,11 +3,11 @@ import OwnersTable from "./OwnersTable"
 // import { ShowHousesButton } from "./owner_columns"
 // import Houses from "./Houses"
 
-function Owners({ ownerList, houseList }) {
+function Owners({ ownerList, setOwnerList }) {
 
     return (
         <div>
-            <OwnersTable ownerList={ownerList}/>
+            <OwnersTable ownerList={ownerList} setOwnerList={setOwnerList}/>
         </div>
     )
 }

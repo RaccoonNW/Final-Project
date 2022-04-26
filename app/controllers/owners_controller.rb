@@ -9,4 +9,16 @@ class OwnersController < ApplicationController
         owner = @current_user.owner.find_by(id: params[:id])
         render json: owner, status: :ok
     end
+
+    def update
+      owner = @current_user.owners.find_by(id: params[:id])
+      owner.update(owner_params)
+      render json: owner
+    end
+
+    private
+
+    def owner_params
+      params.require(:editedData).permit(:name, :number, :email, :notes)
+    end
 end
