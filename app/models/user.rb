@@ -4,7 +4,8 @@ class User < ApplicationRecord
     has_many :houses, through: :house_owners
     has_secure_password
 
-    validates :username, presence: true, uniqueness: true
+    validates :username, presence: true
+    validates_uniqueness_of :username, :case_sensitive => false
 
     # Password Validations
     validates :password, length: { in: 6..30}

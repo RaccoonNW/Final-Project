@@ -1,9 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import OwnersTable from "./OwnersTable"
-// import { ShowHousesButton } from "./owner_columns"
-// import Houses from "./Houses"
 
-function Owners({ ownerList, setOwnerList }) {
+function Owners() {
+
+    const [ownerList, setOwnerList] = useState([])
+
+    useEffect(() => {
+        fetch('/owners').then((r) => {
+            if (r.ok) {
+              r.json().then((data) => setOwnerList(data))
+            } else {
+              r.json().then((data) => console.log(data))
+            }
+          });
+    }, [])
 
     return (
         <div>

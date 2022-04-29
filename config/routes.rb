@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   resources :owners, only: [:index, :show, :update]
-  resources :houses, only: [:index, :show]
+  resources :houses, only: [:index, :show, :update]
   resources :house_owners, only: [:index, :show]
   
   # Routing logic: fallback requests for React Router.

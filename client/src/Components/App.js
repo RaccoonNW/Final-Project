@@ -1,20 +1,16 @@
-// import { Switch, Route } from "react-router-dom"
-// import Signup from './Signup';
 import NavBar from "./NavBar";
 import Login from "./Login";
-// import Owners from "./Owners";
 import Home from "./Home";
-import CustomerOwnerData from "./CustomerOwnerData";
-import CustomerHomeData from "./CustomerHomeData";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import Owners from "../owners_table_files/Owners";
+import Houses from "../houses_table_files/Houses";
 
 function App() {
 
   const [user, setUser] = useState(null)
-  const [ownerList, setOwnerList] = useState([])
-  const [houseList, setHouseList] = useState([])
   const [houseOwnerList, setHouseOwnerList] = useState([])
+  console.log(houseOwnerList)
 
   useEffect(() => {
     // auto-login
@@ -25,25 +21,7 @@ function App() {
         r.json().then((data) => console.log(data))
       }
     });
-  }, []);
-
-  useEffect(() => {
-    fetch('/owners').then((r) => {
-      if (r.ok) {
-        r.json().then((data) => setOwnerList(data))
-      } else {
-        r.json().then((data) => console.log(data))
-      }
-    });
-
-    fetch('/houses').then((r) => {
-      if (r.ok) {
-        r.json().then((data) => setHouseList(data))
-      } else {
-        r.json().then((data) => console.log(data))
-      }
-    });
-
+    //House Owner Data - Unused so far
     fetch('/house_owners').then((r) => {
       if (r.ok) {
         r.json().then((data) => setHouseOwnerList(data))
@@ -51,17 +29,17 @@ function App() {
         r.json().then((data) => console.log(data))
       }
     })
-  }, [])
+  }, []);
 
   if (!user) {
     return <Login onLogin={setUser} user={user} />; 
   } else {
     return (
       <div>
-      <NavBar user={user} setUser={setUser} ownerList={ownerList}/>
+      <NavBar user={user} setUser={setUser}/>
       <Routes>
-        <Route path="/owners" element={<CustomerOwnerData ownerList={ownerList} setOwnerList={setOwnerList}/>}/>
-        <Route path="/houses" element={<CustomerHomeData houseList={houseList}/>}/>
+        <Route path="/owners" element={<Owners/>}/>
+        <Route path="/houses" element={<Houses/>}/>
         <Route path="/" element={<Home user={user}/>}/>
       </Routes>
       </div>
