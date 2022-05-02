@@ -1,9 +1,14 @@
-# Project Template: React/Rails API
+# Customer Data Tracking App
+
+### This ReadMe will hold the instructions for both the front and backend of this project. The frontend can be found in the *client* folder.
 
 ## Description
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Heroku.
+This application is designed for business owners who work directly with customers and their homes. This could be window cleaning, roof service, etc. The goal was to design a platform that was flexible for business owners to use to organize the data they have for different jobs. Making it easier to send different employees to work that fits their expertise or schedule.
+
+## Usage
+
+The user will be able to create an account or sign-in to their account if they already have one. Once inside They will be able to toggle between viewing a list of their clients and their clients homes. They will be able to add, edit, and delete both customer data and home data. 
 
 ## Requirements
 
@@ -11,13 +16,16 @@ backend together, and easily deploy them to Heroku.
 - NodeJS (v16), and npm
 - Heroku CLI
 - Postgresql
+- React ^17.0.2
+- React-Dom ^17.0.2
+- React-Router-Dom ^6.2.1
 
 See Environment Setup below for instructions on installing these tools if you
 don't already have them.
 
 ## Setup
 
-Start by **cloning** (not forking) the project template repository and removing
+Start by **cloning** (not forking) the project repository and removing
 the remote:
 
 ```console
@@ -34,14 +42,6 @@ etc — since you're importing an existing repository, creating any of those fil
 on GitHub will cause issues.
 
 [create repo]: https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli
-
-If you're working with a partner,
-[add them as a collaborator][add collaborator] on GitHub. From your repo on
-GitHub, go to Settings > Manage Access > Invite a collaborator and enter your
-partner's username. Once your partner has access, they should git **clone** (not
-fork) the repository.
-
-[add collaborator]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository
 
 Finally, connect the GitHub remote repository to your local repository and push
 up your code:
@@ -65,12 +65,7 @@ You can use the following commands to run the application:
 - `npm start --prefix client`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
 
-Make sure to also update this README to include documentation about
-your project. Here's a list of some [awesome readmes][] for inspiration.
-
-[awesome readmes]: https://github.com/matiassingers/awesome-readme
-
-## Deploying
+<!-- ## Deploying
 
 This application has all the starter code needed to help you deploy your
 application to Heroku. It's recommended to deploy your project early and push up
@@ -122,7 +117,7 @@ You can view your deployed app with:
 
 ```sh
 heroku open
-```
+``` -->
 
 ## Environment Setup
 
@@ -179,7 +174,7 @@ npm i -g npm
 
 ### Sign Up for a [Heroku Account][heroku signup]
 
-You can sign up at for a free account at
+<!-- You can sign up at for a free account at
 [https://signup.heroku.com/devcenter][heroku signup].
 
 ### Download the [Heroku CLI][heroku cli] Application
@@ -210,7 +205,7 @@ logging in, close the browser window and return to the terminal. You can run
 `heroku whoami` in the terminal to verify that you have logged in successfully.
 
 [heroku signup]: https://signup.heroku.com/devcenter
-[heroku cli]: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+[heroku cli]: https://devcenter.heroku.com/articles/heroku-cli#download-and-install -->
 
 ### Install Postgresql
 
@@ -218,50 +213,6 @@ Heroku requires that you use PostgreSQL for your database instead of SQLite.
 PostgreSQL (or just Postgres for short) is an advanced database management
 system with more features than SQLite. If you don't already have it installed,
 you'll need to set it up.
-
-#### PostgreSQL Installation for WSL
-
-To install Postgres for WSL, run the following commands from your Ubuntu terminal:
-
-```sh
-sudo apt update
-sudo apt install postgresql postgresql-contrib libpq-dev
-```
-
-Then confirm that Postgres was installed successfully:
-
-```sh
-psql --version
-```
-
-Run this command to start the Postgres service:
-
-```sh
-sudo service postgresql start
-```
-
-Finally, you'll also need to create a database user so that you are able to
-connect to the database from Rails. First, check what your operating system
-username is:
-
-```sh
-whoami
-```
-
-If your username is "ian", for example, you'd need to create a Postgres user
-with that same name. To do so, run this command to open the Postgres CLI:
-
-```sh
-sudo -u postgres -i
-```
-
-From the Postgres CLI, run this command (replacing "ian" with your username):
-
-```sh
-createuser -sr ian
-```
-
-Then enter `control + d` or type `logout` to exit.
 
 [This guide][postgresql wsl] has more info on setting up Postgres on WSL if you
 get stuck.
