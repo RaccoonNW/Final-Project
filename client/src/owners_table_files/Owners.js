@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import OwnersTable from "./OwnersTable"
 
-function Owners() {
+function Owners({ user }) {
 
     const [ownerList, setOwnerList] = useState([])
 
@@ -13,7 +13,7 @@ function Owners() {
               r.json().then((data) => console.log(data))
             }
           });
-    }, [])
+    }, [user])
 
     return (
         <div>

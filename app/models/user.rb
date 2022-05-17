@@ -4,11 +4,13 @@ class User < ApplicationRecord
     has_many :houses, through: :house_owners
     has_secure_password
 
+    # Username Validations - Figure out how to make login case-insensitive
     validates :username, presence: true
     validates_uniqueness_of :username, :case_sensitive => false
 
     # Password Validations
     validates :password, length: { in: 6..30}
+    validates :password, presence: true
     validates :password, confirmation: true
     validates :password_confirmation, presence: true
     validate :password_lower_case

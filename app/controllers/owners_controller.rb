@@ -1,5 +1,5 @@
 class OwnersController < ApplicationController
-    before_action :authorize
+    # before_action :authorize
 
     def index 
       render json: @current_user.owners.distinct, status: :ok  
@@ -16,9 +16,23 @@ class OwnersController < ApplicationController
       render json: owner
     end
 
-    private
+    def create 
+      owner = @current_user.owners.create(owner_params_create)
+      owner.house_owners.last.update(user_id: @current_user.id)
+      render json: owner, status: :created
+    end
 
+    def org_owners
+      render json: @current_user.owners.order(:name).distinct, status: :ok
+    end
+    
+    private
+    
     def owner_params
       params.require(:editedData).permit(:name, :number, :email, :notes)
+    end
+    
+    def owner_params_create
+      params.require(:newOwnerData).permit(:name, :number, :email, :notes, house_attributes: [:address, :sq_footage, :floor_count, :window_count, :roof_pitch, :notes])
     end
 end

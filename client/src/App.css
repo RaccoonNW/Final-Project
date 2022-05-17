@@ -220,3 +220,85 @@ table th {
   color: hsla(203, 80%, 2%, 0.586);
   font-family: 'Courier New', Courier, monospace;
 }
+
+.house-select-container {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 100%;
+  border-radius: 0.25em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+}
+
+.house-select-container select {
+  width: 100%;
+  text-align: center;
+  display:inline;
+  align-items: center;
+  position: relative;
+  color: white;
+  background-color: hsla(201, 100%, 6%, 0.15);
+}
+
+.add-owner-main-div {
+  background-image: url('../src/Images/new_owner_background.jpeg');
+  height: vm;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-owner-container {
+  background-color: hsla(201, 100%, 6%, 0.6);
+  padding: 50px 30px;
+  width: 50%;
+  min-width: max-content;
+  max-width: 600px;
+}
+
+.new-owner-title {
+  color: whitesmoke;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  font-weight: normal;
+}
+
+.new-owner-form-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.new-owner-form-input label {
+  color: white;
+  font-weight: lighter;
+  font-size: 1em;
+  margin-bottom: 7px;
+}
+
+.new-owner-form-input input {
+  background-color: hsla(201, 100%, 91%, 0.3);;
+  border: 1px solid hsla(201, 100%, 6%);;
+  outline: none;
+  font-size: 1.5em;
+  padding: .1em .25em;
+  border-radius: 5px;
+  color: white;
+  font-weight: lighter;
+}
+
+.new-owner-form-input input:focus {
+  border: 1px solid hsla(201, 100%, 50%);;
+
+}
+
+.or-divide {
+  text-align: center;
+  color: #f2f2f2;
+}

@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Owners from "../owners_table_files/Owners";
 import Houses from "../houses_table_files/Houses";
+import AddOwnerForm from "./Forms/AddOwnerForm";
 
 function App() {
 
   const [user, setUser] = useState(null)
   const [houseOwnerList, setHouseOwnerList] = useState([])
-  console.log(houseOwnerList)
 
   useEffect(() => {
     // auto-login
@@ -31,6 +31,18 @@ function App() {
     })
   }, []);
 
+  const [houseList, setHouseList] = useState([])
+
+  useEffect(() => {
+      fetch('/houses').then((r) => {
+          if (r.ok) {
+            r.json().then((data) => setHouseList(data))
+          } else {
+            r.json().then((data) => console.log(data))
+          }
+        });
+  }, [user])
+
   if (!user) {
     return <Login onLogin={setUser} user={user} />; 
   } else {
@@ -38,8 +50,9 @@ function App() {
       <div>
       <NavBar user={user} setUser={setUser}/>
       <Routes>
-        <Route path="/owners" element={<Owners/>}/>
-        <Route path="/houses" element={<Houses/>}/>
+        <Route path="/owners" element={<Owners user={user}/>}/>
+        <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList}/>}/>
+        <Route path="/add-owner" element={<AddOwnerForm/>}/>
         <Route path="/" element={<Home user={user}/>}/>
       </Routes>
       </div>
