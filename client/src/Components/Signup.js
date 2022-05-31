@@ -1,41 +1,46 @@
 import React, { useState } from 'react'
+import { useNavigate, Outlet } from 'react-router-dom';
 import '../App.css'
 
 function Signup({ onLogin }) {
-    const [errors, setErrors] = useState([])
-    const [data, setData] = useState({
-        username: "",
-        password: "",
-        password_confirmation: ""
-    })
 
-    function handleChange(e) {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
-    }
+  let navigate = useNavigate()
+  const [errors, setErrors] = useState([])
+  const [data, setData] = useState({
+      username: "",
+      password: "",
+      password_confirmation: ""
+    });
+
+  function handleChange(e) {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    })
+  }
   
-    function handleSubmit(e) {
-      e.preventDefault()
-      setErrors([])
-      fetch('/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({data})
-      })
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((user) => onLogin(user))
-        } else {
-          r.json().then((err) => setErrors(err.errors));
-        }
-      });
-    }
+  function handleSubmit(e) {
+    e.preventDefault()
+    setErrors([])
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({data})
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((user) => onLogin(user))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    }); 
+  }
     
-    return(
+  return(
+    <div className="login-signup-main-div">
       <div className="login-signup-container">
         <h2 className='login-signup-title'>Signup</h2>
         <form onSubmit={handleSubmit}>
@@ -80,7 +85,8 @@ function Signup({ onLogin }) {
             </div>
         </form>
       </div>
-    )
+    </div>
+  )
 }
 
 export default Signup

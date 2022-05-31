@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get '/users', to: 'users#index'
+
+
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   get '/organized', to: "owners#org_owners"
 
+  resources :users
   resources :owners, only: [:index, :show, :update, :create]
   resources :houses, only: [:index, :show, :update]
   resources :house_owners, only: [:index, :show, :create]

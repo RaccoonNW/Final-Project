@@ -1,7 +1,11 @@
 import { useState, React } from "react"
+import { useNavigate } from "react-router-dom"
 import HouseDataForm from "./HouseDataForm"
 
-function AddOwnerForm() {
+function AddOwnerForm({ houseList }) {
+
+    const navigate = useNavigate()
+
     const defaultOwnerData = {
         name: "",
         number: "",
@@ -25,7 +29,8 @@ function AddOwnerForm() {
 
     const [ownerData, setOwnerData] = useState(defaultOwnerData)
 
-    function toggleAddHouseVis() {
+    function toggleAddHouseVis(e) {
+        e.preventDefault()
         addHouseVis ? setAddHouseVis(false) : setAddHouseVis(true)
     }
 
@@ -45,6 +50,7 @@ function AddOwnerForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
+        // navigate('/owners')
         fetch('/owners', {
             method: 'POST',
             headers: {
@@ -60,12 +66,32 @@ function AddOwnerForm() {
         .then((r) => {
             if (r.ok) {
               r.json().then((data) => {
-                console.log(data)
+                navigate('/owners')
               })
             }
           });
     }
 
+    const existingHouses = houseList.map((house) => {
+        return (
+            <option key={house.id} value={house.id}>{house.address}</option>
+        )
+    })
+
+    function selectHouse(e) {
+        let filteredSelectHouse = houseList.filter((house) => {
+            return parseInt(e.target.value) === house.id
+        })
+
+        setHouseData({
+            address: filteredSelectHouse[0].address,
+            sq_footage: filteredSelectHouse[0].sq_footage,
+            floor_count: filteredSelectHouse[0].floor_count,
+            window_count: filteredSelectHouse[0].window_count,
+            roof_pitch: filteredSelectHouse[0].roof_pitch,
+            notes: filteredSelectHouse[0].notes
+        })
+    }
 
 
 
@@ -113,18 +139,16 @@ function AddOwnerForm() {
                         />
                     </div>
                     <div className="house-select-container">
-                        <select className="house-select-menu">
-                            <option value="">Select Existing House</option>
-                            <option value="">Select Existing House</option>
-                            <option value="">Select Existing House</option>
-                            <option value="">Select Existing House</option>
+                        <select className="house-select-menu" onChange={selectHouse}>
+                            <option value="null">Select Existing House</option>
+                            {existingHouses}
                         </select>
                     </div>
+                    <p className="or-divide">~ Or ~</p>
                     {addHouseVis ? <HouseDataForm houseData={houseData} setHouseData={setHouseData} handleHouseChange={handleHouseChange}/> : <p></p>}
+                    <button className="login-signup-button" onClick={toggleAddHouseVis}>Add New House</button>
                     <button type="submit" className="login-signup-button">Submit</button>
                 </form>
-                    <p className="or-divide">~ Or ~</p>
-                    <button className="login-signup-button" onClick={toggleAddHouseVis}>Add New House</button>
             </div>
         </div>
     )

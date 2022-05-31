@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Signup from "./Signup";
 import LoginForm from "./LoginForm";
+import { Outlet } from "react-router-dom"
 
-function Login( {onLogin}) {
+function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true)
 
     return (
@@ -22,7 +23,7 @@ function Login( {onLogin}) {
                 </div>
             ) : (
                 <div>
-                    <Signup onLogin={onLogin}/>
+                    <Signup onLogin={onLogin} setShowLogin={setShowLogin}/>
                     <div className="toggle-login-signup-div">
                         <p>
                             Already have an account?

@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 
-function NavBar({ setUser }) {
+function NavBar({ user, setUser }) {
 
     const navigate = useNavigate()
 
@@ -13,12 +13,12 @@ function NavBar({ setUser }) {
         })
         navigate('/')
     }
-    
+
     return (
         <nav className="navbar">
             <div className="page-title">Project</div>
             <div className="navbar-links">
-                <NavLink className="nav-links" to='/'>Home</NavLink>
+                <NavLink className="nav-links" to='/home'>Home</NavLink>
                 <NavLink className="nav-links" to='/owners'>Owners</NavLink>
                 <NavLink className="nav-links" to='/houses'>Houses</NavLink>
                 <NavLink className="nav-links" to='/add-owner'>Add Owner</NavLink>

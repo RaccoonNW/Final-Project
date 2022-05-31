@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  let navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,7 +17,7 @@ function LoginForm({ onLogin }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => onLogin(user), navigate("/home"));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -32,7 +34,6 @@ function LoginForm({ onLogin }) {
             type="text"
             id="username"
             autoComplete="off"
-            // placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -43,7 +44,6 @@ function LoginForm({ onLogin }) {
             type="password"
             id="password"
             autoComplete="current-password"
-            // placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -52,7 +52,8 @@ function LoginForm({ onLogin }) {
             variant="fill" 
             color="primary" 
             className="login-signup-button"
-            type="submit">
+            type="submit"
+          >
             Login
           </button>
           <div>
