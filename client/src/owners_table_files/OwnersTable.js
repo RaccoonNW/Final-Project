@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import EditableOwnerRow from "./EditableOwnerRow";
 import ReadOnlyOwnerRow from "./ReadOnlyOwnerRow";
 
-function OwnersTable({ ownerList, setOwnerList }) {
+function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
 
+    const [deleteData, setDeleteData] = useState({})
     const [editOwnerId, setEditOwnerId] = useState(null)
     const [editedData, setEditedData] = useState({
         name: "",
@@ -105,6 +106,37 @@ function OwnersTable({ ownerList, setOwnerList }) {
         });
     }
 
+    function handleDelete(e) {
+        e.preventDefault()
+
+        for (let i = 0; i < houseOwnerList.length; i++) {
+            if(houseOwnerList[i].owner_id.toString() === e.target.id) {
+                setDeleteData({
+                    owner_id: houseOwnerList[i].owner_id,
+                    house_id: houseOwnerList[i].house_id
+                })
+            }
+        }
+        if(deleteData) {
+            fetch(`/owners/${deleteData.owner_id}`, {
+                method: 'DELETE'
+            }).then((r) => {
+                if (r.ok) {
+                    fetch(`/houses/${deleteData.house_id}`, {
+                        method: 'DELETE'
+                    })
+                    // r.json().then((data) => console.log(data))
+                } else {
+                    r.json().then((err) => console.log(err))
+                }
+            })
+        }
+
+        // fetch(`/owners/${e.target.id}`, {
+        //     method: 'DELETE'
+        // })
+    }
+
     // function handleOrg() {
     //     fetch("/organized").then((r) => r.json())
     //     .then((orgOwnerData) => setOwnerList(orgOwnerData))
@@ -137,6 +169,8 @@ function OwnersTable({ ownerList, setOwnerList }) {
                                         <ReadOnlyOwnerRow 
                                             owner={owner} 
                                             handleEditClick={handleEditClick}
+                                            handleDelete={handleDelete}
+                                            houseOwnerList={houseOwnerList}
                                         />}
                                 </Fragment>
                             )

@@ -14,12 +14,12 @@ function AddOwnerForm({ houseList }) {
     }
 
     const defaultHouseData = {
-            address: "",
-            sq_footage: "",
-            window_count: "",
-            roof_pitch: "",
-            floor_count: "",
-            notes: ""
+            address: null,
+            sq_footage: null,
+            window_count: null,
+            roof_pitch: null,
+            floor_count: null,
+            notes: null
     }
 
 
@@ -101,7 +101,7 @@ function AddOwnerForm({ houseList }) {
         <div className="add-owner-main-div">
             <div className="add-owner-container">
                 <h4 className='new-owner-title'>Add New Owner</h4>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="add-owner-form">
                     <div className='new-owner-form-input'>
                         <label>Name:</label>
                         <input
@@ -145,7 +145,7 @@ function AddOwnerForm({ houseList }) {
                         </select>
                     </div>
                     <p className="or-divide">~ Or ~</p>
-                    {addHouseVis ? <HouseDataForm houseData={houseData} setHouseData={setHouseData} handleHouseChange={handleHouseChange}/> : <p></p>}
+                    {addHouseVis ? <HouseDataForm houseData={houseData} setHouseData={setHouseData} handleHouseChange={handleHouseChange}/> : <div className="empty-div"></div>}
                     <button className="login-signup-button" onClick={toggleAddHouseVis}>Add New House</button>
                     <button type="submit" className="login-signup-button">Submit</button>
                 </form>

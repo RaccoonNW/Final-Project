@@ -1,7 +1,7 @@
 import HouseTable from "./HouseTable"
 // import { useState, useEffect } from "react"
 
-function Houses({ houseList, setHouseList }) {
+function Houses({ houseList, setHouseList, handleHouseDelete }) {
 
     // const [houseList, setHouseList] = useState([])
 
@@ -17,7 +17,7 @@ function Houses({ houseList, setHouseList }) {
 
     return (
         <div>
-            <HouseTable houseList={houseList} setHouseList={setHouseList}/>
+            <HouseTable houseList={houseList} setHouseList={setHouseList} handleHouseDelete={handleHouseDelete}/>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import ReadOnlyHouseRow from "./ReadOnlyHouseRow";
 
 
 
-function HouseTable({ houseList, setHouseList }) {
+function HouseTable({ houseList, setHouseList, handleHouseDelete }) {
 
     const [editHouseId, setEditHouseId] = useState(null)
     const [editedData, setEditedData] = useState({
@@ -96,6 +96,7 @@ function HouseTable({ houseList, setHouseList }) {
                                         <ReadOnlyHouseRow 
                                             house={house} 
                                             handleEditClick={handleEditClick}
+                                            handleHouseDelete={handleHouseDelete}
                                         />}
                                 </Fragment>
                             )

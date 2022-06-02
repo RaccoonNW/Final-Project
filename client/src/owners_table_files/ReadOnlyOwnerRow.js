@@ -1,4 +1,6 @@
-function ReadOnlyOwnerRow({ owner, handleEditClick }) {
+function ReadOnlyOwnerRow({ owner, handleEditClick, handleDelete, houseOwnerList }) {
+
+    
 
     return (
         <tr key={owner.id}>
@@ -6,7 +8,7 @@ function ReadOnlyOwnerRow({ owner, handleEditClick }) {
             <td>{owner.number}</td>
             <td>{owner.email}</td>
             <td>{owner.notes}</td>
-            <td><button onClick={(e) => handleEditClick(e, owner)}>Edit</button><button>Delete</button></td>
+            <td><button onClick={(e) => handleEditClick(e, owner)}>Edit</button><button id={owner.id} onClick={(e) => handleDelete(e)}>Delete</button></td>
         </tr>
     )
 }

@@ -13,6 +13,11 @@ class HousesController < ApplicationController
         house.update(house_params)
         render json: house
     end
+
+    def destroy
+        house = @current_user.houses.find_by(id: params[:id])
+        house.destroy
+    end
   
     private
 

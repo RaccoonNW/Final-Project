@@ -1,7 +1,7 @@
 import React from "react"
 import OwnersTable from "./OwnersTable"
 
-function Owners({ user, ownerList, setOwnerList }) {
+function Owners({ user, ownerList, setOwnerList, houseOwnerList }) {
 
     // const [ownerList, setOwnerList] = useState([])
 
@@ -17,7 +17,7 @@ function Owners({ user, ownerList, setOwnerList }) {
 
     return (
         <div>
-            <OwnersTable ownerList={ownerList} setOwnerList={setOwnerList}/>
+            <OwnersTable ownerList={ownerList} setOwnerList={setOwnerList} houseOwnerList={houseOwnerList}/>
         </div>
     )
 }

@@ -55,6 +55,21 @@ function App() {
         });
   }, [user])
 
+  function handleHouseDelete(e) {
+    e.preventDefault()
+    console.log(e.target.id)
+    // fetch(`/houses/${e.target.id}`, {
+    //     method: 'DELETE'
+    // }).then((r) => {
+    //     if (r.ok) {
+    //         console.log(r)
+    //     } else {
+    //         r.json().then((err) => console.log(err))
+    //     }
+    // })
+    // console.log(typeof(e.target.id))
+  }
+
   if (!user) {
     return (
       <div>
@@ -67,12 +82,12 @@ function App() {
     )
   } else {
     return (
-      <div>
+      <div className="main-app-div">
       <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/home" element={<Home user={user} houseList={houseList} ownerList={ownerList}/>}/>
-        <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList}/>}/>
-        <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList}/>}/>
+        <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList} houseOwnerList={houseOwnerList} handleHouseDelete={handleHouseDelete}/>}/>
+        <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList} handleHouseDelete={handleHouseDelete}/>}/>
         <Route path="/add-owner" element={<AddOwnerForm houseList={houseList}/>}/>
       </Routes>
       </div>

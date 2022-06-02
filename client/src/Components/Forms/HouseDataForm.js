@@ -1,6 +1,6 @@
 function HouseDataForm({ houseData, setHouseData, handleHouseChange }) {
     return (
-            <div>
+            <div className="house-owner-add-form">
                 <div className='new-owner-form-input'>
                     <label>Address:</label>
                     <input

@@ -16,7 +16,7 @@ function NavBar({ user, setUser }) {
 
     return (
         <nav className="navbar">
-            <div className="page-title">Project</div>
+            <div className="page-title">Property Poodle</div>
             <div className="navbar-links">
                 <NavLink className="nav-links" to='/home'>Home</NavLink>
                 <NavLink className="nav-links" to='/owners'>Owners</NavLink>

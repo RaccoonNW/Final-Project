@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get '/organized', to: "owners#org_owners"
 
   resources :users
-  resources :owners, only: [:index, :show, :update, :create]
-  resources :houses, only: [:index, :show, :update]
+  resources :owners, only: [:index, :show, :update, :create, :destroy]
+  resources :houses, only: [:index, :show, :update, :destroy]
   resources :house_owners, only: [:index, :show, :create]
   
   # Routing logic: fallback requests for React Router.
