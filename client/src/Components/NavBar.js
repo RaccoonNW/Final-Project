@@ -10,6 +10,7 @@ function NavBar({ user, setUser, setIsLoadingLogin }) {
         fetch('/logout', {method: 'DELETE' }).then((r) => {
             if (r.ok) {
                 setUser(null)
+                localStorage.setItem('logged-in', JSON.stringify(false))
                 setIsLoadingLogin(false)
             }
         })

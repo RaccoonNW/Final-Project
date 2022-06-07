@@ -8,7 +8,7 @@ function ReadOnlyHouseRow({ house, handleEditClick }) {
             <td>{house.window_count}</td>
             <td>{house.roof_pitch}</td>
             <td>{house.notes}</td>
-            <td><button onClick={(e) => handleEditClick(e, house)}>Edit</button></td>
+            <td className="owner-table-edit-button"><button onClick={(e) => handleEditClick(e, house)}>Edit</button></td>
         </tr>
     )
 }

@@ -36,7 +36,7 @@ function LandingPage() {
         <div className="landing-page-main">
             <div className="landing-page-header">
                 <div className="landing-name">
-                    <h1>Welcome To The App</h1>
+                    <h1>Welcome To Property Poodle</h1>
                 </div>
                 <div className="landing-nav">
                     <NavLink className="nav-links" to="/login">Sign In</NavLink>

@@ -79,7 +79,7 @@ function HouseTable({ houseList, setHouseList, handleHouseDelete }) {
                             <th>Window Count</th>
                             <th>Roof Pitch</th>
                             <th>Notes</th>
-                            <th>Edit / Delete</th>
+                            <th>Edit Button</th>
                         </tr>
                     </thead>
                     <tbody>

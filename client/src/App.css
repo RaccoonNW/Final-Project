@@ -419,6 +419,21 @@ html, body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+.home-page-stats {
+  background-color: rgba(51, 51, 51, 0.682);
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  border-radius: 25px;
+}
+
+.home-page-stats p {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+}
+
 /* Tables Layout */
 
 table {
@@ -442,6 +457,10 @@ table th {
   text-align: center;
   background-color: #04AA6D;
   color: white;
+}
+
+table input {
+  width: 100%;
 }
 
 /* New Owner / House Form Layout */
@@ -599,44 +618,12 @@ table th {
   100% { transform: rotate(360deg); }
 }
 
-/*Gross Animations*/
-
-/* @keyframes blinkingBackground {
-  0%		{ background-color: red;}
-  25%		{ background-color: #1e2bdd;}
-  50%		{ background-color: #ef0aba;}
-  75%		{ background-color: #109b41;}
-  100%	{ background-color: #d5a804;}
+.owner-table-edit-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-@keyframes blinkingBorderTop {
-  0%		{ border-top: 16px solid red;}
-  25%		{ border-top: 16px solid #1e2bdd;}
-  50%		{ border-top: 16px solid #ef0aba;}
-  75%		{ border-top: 16px solid #109b41;}
-  100%	{ border-top: 16px solid #d5a804;}
+.owner-table-edit-button button {
+  width: 75%;
 }
-
-@keyframes blinkingBorderBottom {
-  0%		{ border-bottom: 16px solid rgb(255, 242, 0);}
-  25%		{ border-bottom: 16px solid #b11edd;}
-  50%		{ border-bottom: 16px solid #0aef3f;}
-  75%		{ border-bottom: 16px solid #9b1010;}
-  100%	{ border-bottom: 16px solid #8104d5;}
-}
-
-@keyframes blinkingBorderRight {
-  0%		{ border-right: 16px solid rgb(255, 242, 0);}
-  25%		{ border-right: 16px solid #1edd84;}
-  50%		{ border-right: 16px solid #835579;}
-  75%		{ border-right: 16px solid #06ec57;}
-  100%	{ border-right: 16px solid #a68a23;}
-}
-
-@keyframes blinkingBorderLeft {
-  0%		{ border-left: 16px solid rgb(92, 27, 27);}
-  25%		{ border-left: 16px solid #1eaadd;}
-  50%		{ border-left: 16px solid #e655c4;}
-  75%		{ border-left: 16px solid #057f30;}
-  100%	{ border-left: 16px solid #d5a804;}
-} */

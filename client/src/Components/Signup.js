@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
-function Signup({ onLogin, setIsLoadingLogin }) {
+function Signup({ onLogin, setIsLoadingLogin, setLoggedInLocal }) {
 
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
@@ -32,7 +32,7 @@ function Signup({ onLogin, setIsLoadingLogin }) {
     })
     .then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user), setIsLoadingLogin(false), navigate("/home"))
+        r.json().then((user) => onLogin(user), localStorage.setItem('logged-in', JSON.stringify(true)), setIsLoadingLogin(false), navigate("/home"))
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -78,6 +78,12 @@ function Signup({ onLogin, setIsLoadingLogin }) {
             />
           </div>
             <button type="submit" className="login-signup-button">Signup</button>
+            <div className='errors'>
+              {errors.map((err) => (
+                <p key={err}>{err}</p>
+              ))}
+            </div>
+            <p>--------------------</p>
             <div className="toggle-login-signup-div">
               <p>
                   Already have an account?
@@ -85,11 +91,6 @@ function Signup({ onLogin, setIsLoadingLogin }) {
                       Log In
                   </button>
               </p>
-            </div>
-            <div className='errors'>
-              {errors.map((err) => (
-                <p key={err}>{err}</p>
-              ))}
             </div>
         </form>
       </div>

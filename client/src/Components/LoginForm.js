@@ -17,7 +17,7 @@ function LoginForm({ onLogin, setIsLoadingLogin }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user), setIsLoadingLogin(false), navigate("/home"));
+        r.json().then((user) => onLogin(user), localStorage.setItem('logged-in', JSON.stringify(true)), setIsLoadingLogin(false), navigate("/home"));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

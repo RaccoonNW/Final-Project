@@ -1,12 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { NavLink } from "react-router-dom";
-// import AddNewOwner from "./AddNewOwner";
 import EditableOwnerRow from "./EditableOwnerRow";
 import ReadOnlyOwnerRow from "./ReadOnlyOwnerRow";
 
-function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
+function OwnersTable({ ownerList, setOwnerList }) {
 
-    const [deleteData, setDeleteData] = useState({})
     const [editOwnerId, setEditOwnerId] = useState(null)
     const [editedData, setEditedData] = useState({
         name: "",
@@ -15,47 +13,6 @@ function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
         notes: ""
     })
     const [updateOwnerErrors, setUpdateOwnerErrors] = useState([])
-    // const [newOwnerErrors, setNewOwnerErrors] = useState([])
-
-    // const [newOwnerData, setNewOwnerData] = useState({
-    //     name: "",
-    //     number: "",
-    //     email: "",
-    //     notes: ""
-    // })
-
-    // function handleAddNewOwnerFormChange(e) {
-    //     e.preventDefault()
-    //     const fieldName = e.target.getAttribute("name")
-    //     const fieldValue = e.target.value
-
-    //     const newOwnerList = {...newOwnerData}
-    //     newOwnerList[fieldName] = fieldValue
-
-    //     setNewOwnerData(newOwnerList)
-    // }
-
-    // function handleAddOwnerFormSubmit(e) {
-    //     setNewOwnerErrors([])
-    //     fetch('/owners', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify({newOwnerData})
-    //     })
-    //     .then((r) => {
-    //       if (r.ok) {
-    //         r.json().then((data) => {
-    //             let newOwnerList = [data, ...ownerList]
-    //             setOwnerList(newOwnerList)
-    //         })
-    //       } else {
-    //         r.json().then((err) => setNewOwnerErrors(err.errors));
-    //       }
-    //       console.log(newOwnerErrors)
-    //     });
-    // }
 
     function handleEditClick(e, owner) {
         e.preventDefault()
@@ -106,42 +63,6 @@ function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
         });
     }
 
-    function handleDelete(e) {
-        e.preventDefault()
-
-        for (let i = 0; i < houseOwnerList.length; i++) {
-            if(houseOwnerList[i].owner_id.toString() === e.target.id) {
-                setDeleteData({
-                    owner_id: houseOwnerList[i].owner_id,
-                    house_id: houseOwnerList[i].house_id
-                })
-            }
-        }
-        if(deleteData) {
-            fetch(`/owners/${deleteData.owner_id}`, {
-                method: 'DELETE'
-            }).then((r) => {
-                if (r.ok) {
-                    fetch(`/houses/${deleteData.house_id}`, {
-                        method: 'DELETE'
-                    })
-                    // r.json().then((data) => console.log(data))
-                } else {
-                    r.json().then((err) => console.log(err))
-                }
-            })
-        }
-
-        fetch(`/owners/${e.target.id}`, {
-            method: 'DELETE'
-        })
-    }
-
-    // function handleOrg() {
-    //     fetch("/organized").then((r) => r.json())
-    //     .then((orgOwnerData) => setOwnerList(orgOwnerData))
-    // }
-
     return (
         <div>
             <form>
@@ -152,7 +73,7 @@ function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
                             <th>Number</th>
                             <th>Email</th>
                             <th>Notes</th>
-                            <th>Edit / Delete</th>
+                            <th>Edit Button</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -169,18 +90,10 @@ function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
                                         <ReadOnlyOwnerRow 
                                             owner={owner} 
                                             handleEditClick={handleEditClick}
-                                            handleDelete={handleDelete}
-                                            houseOwnerList={houseOwnerList}
                                         />}
                                 </Fragment>
                             )
                         })}
-                        {/* <AddNewOwner 
-                            newOwnerData={newOwnerData} 
-                            setNewOwnerData={setNewOwnerData} 
-                            handleAddNewOwnerFormChange={handleAddNewOwnerFormChange}
-                            handleAddOwnerFormSubmit={handleAddOwnerFormSubmit}
-                        /> */}
                     </tbody>
                 </table>
             </form>

@@ -1,7 +1,7 @@
 function EditableOwnerRow({ editedData, handleEditFormChange, handleEditFormSubmit }) {
     return (
-        <tr>
-            <td>
+        <tr className="editable-table-row">
+            <td className="editable-rows">
                 <input 
                     type="text" 
                     required="required" 
@@ -41,7 +41,7 @@ function EditableOwnerRow({ editedData, handleEditFormChange, handleEditFormSubm
                     value={editedData.notes}
                 ></input>
             </td>
-            <td>
+            <td className="owner-table-edit-button">
                 <button type="submit" onClick={handleEditFormSubmit}>Save</button>
             </td>
         </tr>

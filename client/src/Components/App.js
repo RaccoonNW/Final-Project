@@ -15,15 +15,16 @@ function App() {
   const [user, setUser] = useState(null)
   const [ownerList, setOwnerList] = useState([])
   const [houseList, setHouseList] = useState([])
-  const [houseOwnerList, setHouseOwnerList] = useState([])
   const [isLoadingLogin, setIsLoadingLogin] = useState(false)
+  const [loggedInLocal, setLoggedInLocal] = useState(
+    JSON.parse(localStorage.getItem('logged-in'))
+  )
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    setIsLoadingLogin(true)
-    // auto-login
-    if (user) {
+    if (loggedInLocal) {
+      console.log(loggedInLocal)
       fetch("/me").then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user), setIsLoadingLogin(false));
@@ -31,8 +32,6 @@ function App() {
           r.json().then((data) => console.log(data))
         }
       });
-    } else {
-      setUser(null)
     }
   }, []);
 
@@ -52,14 +51,6 @@ function App() {
         r.json().then((data) => console.log(data))
       }
     });
-
-    fetch('/house_owners').then((r) => {
-      if (r.ok) {
-        r.json().then((data) => setHouseOwnerList(data))
-      } else {
-        r.json().then((data) => console.log(data))
-      }
-    })
   }, [navigate])
 
 
@@ -68,8 +59,8 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<LandingPage onLogin={setUser} user={user}/>}/>
-          <Route path="/login" element={<LoginForm onLogin={setUser} user={user} setIsLoadingLogin={setIsLoadingLogin}/>}/>
-          <Route path="/signup" element={<Signup onLogin={setUser} setIsLoadingLogin={setIsLoadingLogin}/>}/>
+          <Route path="/login" element={<LoginForm onLogin={setUser} user={user} setIsLoadingLogin={setIsLoadingLogin} setLoggedInLocal={setLoggedInLocal}/>}/>
+          <Route path="/signup" element={<Signup onLogin={setUser} setIsLoadingLogin={setIsLoadingLogin} setLoggedInLocal={setLoggedInLocal}/>}/>
         </Routes>
       </div>
     )
@@ -85,7 +76,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/home" element={<Home user={user} houseList={houseList} ownerList={ownerList}/>}/>
-          <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList} houseOwnerList={houseOwnerList}/>}/>
+          <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList}/>}/>
           <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList}/>}/>
           <Route path="/add-owner" element={<AddOwnerForm houseList={houseList} navigate={navigate}/>}/>
         </Routes>
