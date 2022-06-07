@@ -132,9 +132,9 @@ function OwnersTable({ ownerList, setOwnerList, houseOwnerList }) {
             })
         }
 
-        // fetch(`/owners/${e.target.id}`, {
-        //     method: 'DELETE'
-        // })
+        fetch(`/owners/${e.target.id}`, {
+            method: 'DELETE'
+        })
     }
 
     // function handleOrg() {

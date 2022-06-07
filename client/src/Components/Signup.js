@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
-function Signup({ onLogin }) {
+function Signup({ onLogin, setShowLogin }) {
 
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const [errors, setErrors] = useState([])
-  const [data, setData] = useState({
+  const [userData, setUserData] = useState({
       username: "",
       password: "",
       password_confirmation: ""
     });
 
   function handleChange(e) {
-    setData({
-      ...data,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value
     })
   }
@@ -28,7 +28,7 @@ function Signup({ onLogin }) {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({data})
+      body: JSON.stringify({userData})
     })
     .then((r) => {
       if (r.ok) {
@@ -50,7 +50,7 @@ function Signup({ onLogin }) {
                 type="text"
                 name="username"
                 autoComplete='off'
-                value={data.username}
+                value={userData.username}
                 onChange={handleChange}
                 // placeholder="Username..."
             />
@@ -61,7 +61,7 @@ function Signup({ onLogin }) {
                 type="password"
                 name="password"
                 autoComplete='off'
-                value={data.password}
+                value={userData.password}
                 onChange={handleChange}
                 // placeholder="Password..."
             />
@@ -72,12 +72,20 @@ function Signup({ onLogin }) {
                 type="password"
                 name="password_confirmation"
                 autoComplete='off'
-                value={data.password_confirmation}
+                value={userData.password_confirmation}
                 onChange={handleChange}
                 // placeholder="Confirm Password..."
             />
           </div>
             <button type="submit" className="login-signup-button">Signup</button>
+            <div className="toggle-login-signup-div">
+              <p>
+                  Already have an account?
+                  <button className="toggle-login-signup-button" onClick={() => navigate('/login')}>
+                      Log In
+                  </button>
+              </p>
+            </div>
             <div className='errors'>
               {errors.map((err) => (
                 <p key={err}>{err}</p>

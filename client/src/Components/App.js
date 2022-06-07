@@ -1,13 +1,14 @@
 import NavBar from "./NavBar";
-import Login from "./Login";
 import Home from "./Home";
 import { useState, useEffect } from "react";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Owners from "../owners_table_files/Owners";
 import Houses from "../houses_table_files/Houses";
 import AddOwnerForm from "./Forms/AddOwnerForm";
 import LandingPage from "./LandingPage";
 import Signup from "./Signup";
+import LoadingIcon from "./LoadingIcon";
+import LoginForm from "./LoginForm";
 
 function App() {
 
@@ -15,17 +16,43 @@ function App() {
   const [ownerList, setOwnerList] = useState([])
   const [houseList, setHouseList] = useState([])
   const [houseOwnerList, setHouseOwnerList] = useState([])
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
+    setIsLoadingLogin(true)
     // auto-login
-    fetch("/me").then((r) => {
+    if (user) {
+      fetch("/me").then((r) => {
+        if (r.ok) {
+          r.json().then((user) => setUser(user), setIsLoadingLogin(false));
+        } else {
+          r.json().then((data) => console.log(data))
+        }
+      });
+    } else {
+      setUser(null)
+    }
+  }, []);
+
+  useEffect(() => {
+    fetch('/owners').then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((data) => setOwnerList(data))
       } else {
         r.json().then((data) => console.log(data))
       }
     });
-    //House Owner Data - Unused so far
+
+    fetch('/houses').then((r) => {
+      if (r.ok) {
+        r.json().then((data) => setHouseList(data))
+      } else {
+        r.json().then((data) => console.log(data))
+      }
+    });
+
     fetch('/house_owners').then((r) => {
       if (r.ok) {
         r.json().then((data) => setHouseOwnerList(data))
@@ -33,66 +60,40 @@ function App() {
         r.json().then((data) => console.log(data))
       }
     })
-  }, []);
+  }, [navigate])
 
-  useEffect(() => {
-      fetch('/owners').then((r) => {
-          if (r.ok) {
-            r.json().then((data) => setOwnerList(data))
-          } else {
-            r.json().then((data) => console.log(data))
-          }
-        });
-  }, [user])
-
-  useEffect(() => {
-      fetch('/houses').then((r) => {
-          if (r.ok) {
-            r.json().then((data) => setHouseList(data))
-          } else {
-            r.json().then((data) => console.log(data))
-          }
-        });
-  }, [user])
-
-  function handleHouseDelete(e) {
-    e.preventDefault()
-    console.log(e.target.id)
-    // fetch(`/houses/${e.target.id}`, {
-    //     method: 'DELETE'
-    // }).then((r) => {
-    //     if (r.ok) {
-    //         console.log(r)
-    //     } else {
-    //         r.json().then((err) => console.log(err))
-    //     }
-    // })
-    // console.log(typeof(e.target.id))
-  }
 
   if (!user) {
     return (
       <div>
         <Routes>
           <Route path="/" element={<LandingPage onLogin={setUser} user={user}/>}/>
-          <Route path="/login" element={<Login onLogin={setUser} user={user}/>}/>
+          <Route path="/login" element={<LoginForm onLogin={setUser} user={user} setIsLoadingLogin={setIsLoadingLogin}/>}/>
           <Route path="/signup" element={<Signup/>}/>
         </Routes>
       </div>
     )
   } else {
-    return (
-      <div className="main-app-div">
-      <NavBar user={user} setUser={setUser}/>
-      <Routes>
-        <Route path="/home" element={<Home user={user} houseList={houseList} ownerList={ownerList}/>}/>
-        <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList} houseOwnerList={houseOwnerList} handleHouseDelete={handleHouseDelete}/>}/>
-        <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList} handleHouseDelete={handleHouseDelete}/>}/>
-        <Route path="/add-owner" element={<AddOwnerForm houseList={houseList}/>}/>
-      </Routes>
-      </div>
-    )
-  }
+    if(isLoadingLogin) {
+      return (
+        <LoadingIcon/>
+      )
+    } else {
+      return (
+        <div className="main-app-div">
+        <NavBar user={user} setUser={setUser} setIsLoadingLogin={setIsLoadingLogin}/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/home" element={<Home user={user} houseList={houseList} ownerList={ownerList}/>}/>
+          <Route path="/owners" element={<Owners user={user} ownerList={ownerList} setOwnerList={setOwnerList} houseOwnerList={houseOwnerList}/>}/>
+          <Route path="/houses" element={<Houses houseList={houseList} setHouseList={setHouseList}/>}/>
+          <Route path="/add-owner" element={<AddOwnerForm houseList={houseList} navigate={navigate}/>}/>
+        </Routes>
+        </div>
+      )
+
+    }
+    }
 }
 
 

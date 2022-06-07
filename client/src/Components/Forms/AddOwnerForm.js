@@ -1,10 +1,7 @@
 import { useState, React } from "react"
-import { useNavigate } from "react-router-dom"
 import HouseDataForm from "./HouseDataForm"
 
-function AddOwnerForm({ houseList }) {
-
-    const navigate = useNavigate()
+function AddOwnerForm({ houseList, navigate }) {
 
     const defaultOwnerData = {
         name: "",
@@ -50,7 +47,6 @@ function AddOwnerForm({ houseList }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // navigate('/owners')
         fetch('/owners', {
             method: 'POST',
             headers: {
@@ -72,26 +68,26 @@ function AddOwnerForm({ houseList }) {
           });
     }
 
-    const existingHouses = houseList.map((house) => {
-        return (
-            <option key={house.id} value={house.id}>{house.address}</option>
-        )
-    })
+    // const existingHouses = houseList.map((house) => {
+    //     return (
+    //         <option key={house.id} value={house.id}>{house.address}</option>
+    //     )
+    // })
 
-    function selectHouse(e) {
-        let filteredSelectHouse = houseList.filter((house) => {
-            return parseInt(e.target.value) === house.id
-        })
+    // function selectHouse(e) {
+    //     let filteredSelectHouse = houseList.filter((house) => {
+    //         return parseInt(e.target.value) === house.id
+    //     })
 
-        setHouseData({
-            address: filteredSelectHouse[0].address,
-            sq_footage: filteredSelectHouse[0].sq_footage,
-            floor_count: filteredSelectHouse[0].floor_count,
-            window_count: filteredSelectHouse[0].window_count,
-            roof_pitch: filteredSelectHouse[0].roof_pitch,
-            notes: filteredSelectHouse[0].notes
-        })
-    }
+    //     setHouseData({
+    //         address: filteredSelectHouse[0].address,
+    //         sq_footage: filteredSelectHouse[0].sq_footage,
+    //         floor_count: filteredSelectHouse[0].floor_count,
+    //         window_count: filteredSelectHouse[0].window_count,
+    //         roof_pitch: filteredSelectHouse[0].roof_pitch,
+    //         notes: filteredSelectHouse[0].notes
+    //     })
+    // }
 
 
 
@@ -138,13 +134,13 @@ function AddOwnerForm({ houseList }) {
                             onChange={handleOwnerChange}
                         />
                     </div>
-                    <div className="house-select-container">
+                    {/* <div className="house-select-container">
                         <select className="house-select-menu" onChange={selectHouse}>
                             <option value="null">Select Existing House</option>
                             {existingHouses}
                         </select>
                     </div>
-                    <p className="or-divide">~ Or ~</p>
+                    <p className="or-divide">~ Or ~</p> */}
                     {addHouseVis ? <HouseDataForm houseData={houseData} setHouseData={setHouseData} handleHouseChange={handleHouseChange}/> : <div className="empty-div"></div>}
                     <button className="login-signup-button" onClick={toggleAddHouseVis}>Add New House</button>
                     <button type="submit" className="login-signup-button">Submit</button>

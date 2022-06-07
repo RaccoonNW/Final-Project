@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { LandingImages } from "./LandingImages"
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 function LandingPage() {
 

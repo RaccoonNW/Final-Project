@@ -557,3 +557,86 @@ table th {
   text-align: center;
   color: #f2f2f2;
 }
+
+.loader-container {
+  display: flex;
+  background-color: rgb(81, 79, 199);
+  /* animation: blinkingBackground 25s infinite; */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.loader {
+  background-color: yellow;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  animation: 
+    blinkingBackground 2s infinite, 
+    spin 2s linear infinite;
+    /* blinkingBorderTop .25s infinite,
+    blinkingBorderBottom .25s infinite,
+    blinkingBorderLeft .25s infinite,
+    blinkingBorderRight .25s infinite; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.loader h1 {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: red;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*Gross Animations*/
+
+/* @keyframes blinkingBackground {
+  0%		{ background-color: red;}
+  25%		{ background-color: #1e2bdd;}
+  50%		{ background-color: #ef0aba;}
+  75%		{ background-color: #109b41;}
+  100%	{ background-color: #d5a804;}
+}
+
+@keyframes blinkingBorderTop {
+  0%		{ border-top: 16px solid red;}
+  25%		{ border-top: 16px solid #1e2bdd;}
+  50%		{ border-top: 16px solid #ef0aba;}
+  75%		{ border-top: 16px solid #109b41;}
+  100%	{ border-top: 16px solid #d5a804;}
+}
+
+@keyframes blinkingBorderBottom {
+  0%		{ border-bottom: 16px solid rgb(255, 242, 0);}
+  25%		{ border-bottom: 16px solid #b11edd;}
+  50%		{ border-bottom: 16px solid #0aef3f;}
+  75%		{ border-bottom: 16px solid #9b1010;}
+  100%	{ border-bottom: 16px solid #8104d5;}
+}
+
+@keyframes blinkingBorderRight {
+  0%		{ border-right: 16px solid rgb(255, 242, 0);}
+  25%		{ border-right: 16px solid #1edd84;}
+  50%		{ border-right: 16px solid #835579;}
+  75%		{ border-right: 16px solid #06ec57;}
+  100%	{ border-right: 16px solid #a68a23;}
+}
+
+@keyframes blinkingBorderLeft {
+  0%		{ border-left: 16px solid rgb(92, 27, 27);}
+  25%		{ border-left: 16px solid #1eaadd;}
+  50%		{ border-left: 16px solid #e655c4;}
+  75%		{ border-left: 16px solid #057f30;}
+  100%	{ border-left: 16px solid #d5a804;}
+} */

@@ -121,17 +121,16 @@ puts "🏕 Seeding house owners..."
 
 # HouseOwner seeds
 
-HouseOwner.create(owner_id: owner1.id, house_id: house1.id, user_id: 1)
-HouseOwner.create(owner_id: owner1.id, house_id: house2.id, user_id: 1)
-HouseOwner.create(owner_id: owner2.id, house_id: house3.id, user_id: 1)
-HouseOwner.create(owner_id: owner3.id, house_id: house4.id, user_id: 1)
-HouseOwner.create(owner_id: owner2.id, house_id: house4.id, user_id: 1)
-HouseOwner.create(owner_id: owner4.id, house_id: house5.id, user_id: 2)
-HouseOwner.create(owner_id: owner5.id, house_id: house6.id, user_id: 2)
-HouseOwner.create(owner_id: owner5.id, house_id: house7.id, user_id: 2)
-HouseOwner.create(owner_id: owner1.id, house_id: house8.id, user_id: 2)
-HouseOwner.create(owner_id: owner2.id, house_id: house9.id, user_id: 2)
-HouseOwner.create(owner_id: owner1.id, house_id: house10.id, user_id: 2)
+HouseOwner.create(owner_id: owner1.id, house_id: house1.id, user_id: 83)
+HouseOwner.create(owner_id: owner1.id, house_id: house2.id, user_id: 83)
+HouseOwner.create(owner_id: owner2.id, house_id: house3.id, user_id: 83)
+HouseOwner.create(owner_id: owner3.id, house_id: house4.id, user_id: 83)
+HouseOwner.create(owner_id: owner3.id, house_id: house5.id, user_id: 83)
+HouseOwner.create(owner_id: owner5.id, house_id: house6.id, user_id: 84)
+HouseOwner.create(owner_id: owner5.id, house_id: house7.id, user_id: 84)
+HouseOwner.create(owner_id: owner4.id, house_id: house8.id, user_id: 84)
+HouseOwner.create(owner_id: owner4.id, house_id: house9.id, user_id: 84)
+HouseOwner.create(owner_id: owner4.id, house_id: house10.id, user_id: 84)
 
 puts "✅ Done seeding!"
 
