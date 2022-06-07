@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 
-function Signup({ onLogin, setShowLogin }) {
+function Signup({ onLogin, setIsLoadingLogin }) {
 
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
@@ -32,7 +32,7 @@ function Signup({ onLogin, setShowLogin }) {
     })
     .then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user))
+        r.json().then((user) => onLogin(user), setIsLoadingLogin(false), navigate("/home"))
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

@@ -69,7 +69,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage onLogin={setUser} user={user}/>}/>
           <Route path="/login" element={<LoginForm onLogin={setUser} user={user} setIsLoadingLogin={setIsLoadingLogin}/>}/>
-          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/signup" element={<Signup onLogin={setUser} setIsLoadingLogin={setIsLoadingLogin}/>}/>
         </Routes>
       </div>
     )
