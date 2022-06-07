@@ -14,3 +14,5 @@ function ReadOnlyHouseRow({ house, handleEditClick }) {
 }
 
 export default ReadOnlyHouseRow
+
+// hello
