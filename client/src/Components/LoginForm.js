@@ -57,19 +57,20 @@ function LoginForm({ onLogin, setIsLoadingLogin }) {
             >
               Login
             </button>
-            <div className="toggle-login-signup-div">
-                          <p>
-                              Don't have an account?
-                              <button className="toggle-login-signup-button" onClick={() => navigate('/signup')}>
-                                  Sign Up
-                              </button>
-                          </p>
-
-                      </div>
             <div>
               {errors.map((err) => (
                 <p key={err}>{err}</p>
               ))}
+            </div>
+            <p>--------------------</p>
+            <div className="toggle-login-signup-div">
+              <p>
+                Don't have an account?
+                <button className="toggle-login-signup-button" onClick={() => navigate('/signup')}>
+                    Sign Up
+                </button>
+              </p>
+
             </div>
         </form>
       </div>
